@@ -1,0 +1,292 @@
+{
+  "titulo": "Organograma Operacional – CPRAIO",
+  "subtitulo": "Nova Estrutura de Subordinação Logística (Proposta Final)",
+  "batalhoes": [
+    {
+      "nome": "1º BPRAIO",
+      "sede": "Fortaleza",
+      "bases_informadas": 2,
+      "companhias": [
+        {
+          "nome": "Fortaleza",
+          "cia": "1ª Cia",
+          "pelotoes": []
+        },
+        {
+          "nome": "Motopoliciamento Ordinário",
+          "cia": "2ª Cia",
+          "pelotoes": []
+        },
+        {
+          "nome": "Messejana",
+          "cia": "3ª Cia",
+          "pelotoes": []
+        }
+      ]
+    },
+    {
+      "nome": "2º BPRAIO",
+      "sede": "Caucaia",
+      "bases_informadas": 5,
+      "companhias": [
+        {
+          "nome": "Caucaia",
+          "cia": "1ª Cia",
+          "pelotoes": [
+            "São Gonçalo do Amarante"
+          ]
+        },
+        {
+          "nome": "Paracuru",
+          "cia": "2ª Cia",
+          "pelotoes": [
+            "Trairi",
+            "Paraipaba"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "3º BPRAIO",
+      "sede": "Russas",
+      "bases_informadas": 9,
+      "companhias": [
+        {
+          "nome": "Russas",
+          "cia": "1ª Cia",
+          "pelotoes": [
+            "Jaguaruana"
+          ]
+        },
+        {
+          "nome": "Limoeiro do Norte",
+          "cia": "2ª Cia",
+          "pelotoes": [
+            "Tabuleiro do Norte",
+            "Morada Nova",
+            "Jaguaribe"
+          ]
+        },
+        {
+          "nome": "Aracati",
+          "cia": "3ª Cia",
+          "pelotoes": [
+            "Icapuí",
+            "Beberibe"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "4º BPRAIO",
+      "sede": "Sobral",
+      "bases_informadas": 14,
+      "companhias": [
+        {
+          "nome": "Sobral",
+          "cia": "1ª Cia",
+          "pelotoes": [
+            "Massapê",
+            "Forquilha",
+            "Santana do Acaraú"
+          ]
+        },
+        {
+          "nome": "Tianguá",
+          "cia": "2ª Cia",
+          "pelotoes": [
+            "Ubajara",
+            "Ibiapina",
+            "Viçosa do Ceará"
+          ]
+        },
+        {
+          "nome": "Ipu",
+          "cia": "3ª Cia",
+          "pelotoes": [
+            "Guaraciaba do Norte",
+            "São Benedito",
+            "Ipueiras"
+          ]
+        },
+        {
+          "nome": "Camocim",
+          "cia": "4ª Cia",
+          "pelotoes": [
+            "Granja"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "5º BPRAIO",
+      "sede": "Juazeiro do Norte",
+      "bases_informadas": 17,
+      "companhias": [
+        {
+          "nome": "Juazeiro do Norte",
+          "cia": "1ª Cia",
+          "pelotoes": [
+            "Caririaçu",
+            "Aurora",
+            "Lavras da Mangabeira"
+          ]
+        },
+        {
+          "nome": "Barbalha",
+          "cia": "2ª Cia",
+          "pelotoes": [
+            "Missão Velha",
+            "Jardim"
+          ]
+        },
+        {
+          "nome": "Crato",
+          "cia": "3ª Cia",
+          "pelotoes": [
+            "Campos Sales"
+          ]
+        },
+        {
+          "nome": "Brejo Santo",
+          "cia": "4ª Cia",
+          "pelotoes": [
+            "Milagres",
+            "Mauriti"
+          ]
+        },
+        {
+          "nome": "Iguatu",
+          "cia": "5ª Cia",
+          "pelotoes": [
+            "Acopiara",
+            "Icó",
+            "Cedro",
+            "Várzea Alegre"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "6º BPRAIO",
+      "sede": "Eusébio",
+      "bases_informadas": 11,
+      "companhias": [
+        {
+          "nome": "Eusébio",
+          "cia": "1ª Cia",
+          "pelotoes": [
+            "Aquiraz",
+            "Cascavel"
+          ]
+        },
+        {
+          "nome": "Maracanaú",
+          "cia": "2ª Cia",
+          "pelotoes": []
+        },
+        {
+          "nome": "Maranguape",
+          "cia": "3ª Cia",
+          "pelotoes": [
+            "Pacatuba",
+            "Guaiúba"
+          ]
+        },
+        {
+          "nome": "Horizonte",
+          "cia": "4ª Cia",
+          "pelotoes": [
+            "Pacajus",
+            "Itaitinga",
+            "Chorozinho"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "7º BPRAIO",
+      "sede": "Quixadá",
+      "bases_informadas": 9,
+      "companhias": [
+        {
+          "nome": "Quixadá",
+          "cia": "1ª Cia",
+          "pelotoes": [
+            "Quixeramobim",
+            "Senador Pompeu"
+          ]
+        },
+        {
+          "nome": "Baturité",
+          "cia": "2ª Cia",
+          "pelotoes": [
+            "Ocara",
+            "Aracoiaba",
+            "Redenção"
+          ]
+        },
+        {
+          "nome": "Canindé",
+          "cia": "3ª Cia",
+          "pelotoes": [
+            "Santa Quitéria"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "8º BPRAIO",
+      "sede": "Itapipoca",
+      "bases_informadas": 9,
+      "companhias": [
+        {
+          "nome": "Itapipoca",
+          "cia": "1ª Cia",
+          "pelotoes": [
+            "Amontada",
+            "Itapajé",
+            "Pentecoste"
+          ]
+        },
+        {
+          "nome": "Acaraú",
+          "cia": "2ª Cia",
+          "pelotoes": [
+            "Cruz",
+            "Itarema",
+            "Bela Cruz",
+            "Marco"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "9º BPRAIO",
+      "sede": "Crateús",
+      "bases_informadas": 11,
+      "companhias": [
+        {
+          "nome": "Crateús",
+          "cia": "1ª Cia",
+          "pelotoes": [
+            "Novo Oriente",
+            "Independência",
+            "Nova Russas",
+            "Tamboril"
+          ]
+        },
+        {
+          "nome": "Tauá",
+          "cia": "2ª Cia",
+          "pelotoes": [
+            "Parambu",
+            "Pedra Branca",
+            "Boa Viagem",
+            "Mombaça"
+          ]
+        }
+      ]
+    }
+  ]
+}

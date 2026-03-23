@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPRAIO | Redistribuição Orgânica</title>
+  <link rel="stylesheet" href="vendor/leaflet/dist/leaflet.css">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero panel">
+      <div class="hero__copy">
+        <p class="hero__eyebrow">Painel Estratégico Territorial</p>
+        <h1>Comando de Policiamento de Rondas e Ações Intensivas e Ostensivas</h1>
+        <p class="hero__subtitle">Redistribuição Orgânica do CPRaio – Proposta de Nove Batalhões</p>
+        <div class="hero__meta">
+          <span class="chip">Base geográfica: municípios do Ceará</span>
+          <span id="coverage-summary" class="chip chip--accent">Carregando base territorial...</span>
+        </div>
+      </div>
+      <div class="hero__brand">
+        <div class="hero__logos">
+          <img src="Logo/ceara_logo.png" alt="Governo do Estado do Ceará">
+          <img src="Logo/pmce_logo.png" alt="Polícia Militar do Ceará">
+        </div>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="section-heading__eyebrow">Visão Geral</p>
+          <h2>Indicadores estratégicos</h2>
+        </div>
+        <div id="data-integrity" class="section-heading__meta"></div>
+      </div>
+      <div id="overview-cards" class="overview-grid">
+        <article class="metric-card metric-card--loading">
+          <span>Carregando indicadores...</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="section-heading__eyebrow">Controles</p>
+          <h2>Filtros e recortes analíticos</h2>
+        </div>
+        <button id="reset-filters" class="ghost-button" type="button">Limpar filtros</button>
+      </div>
+      <div class="filters-grid">
+        <label class="filter-field">
+          <span>Cenário</span>
+          <select id="scenario-filter">
+            <option value="ambos">Ambos</option>
+            <option value="atual">Atual</option>
+            <option value="proposta">Proposta</option>
+          </select>
+        </label>
+        <label class="filter-field">
+          <span>Batalhão</span>
+          <select id="battalion-filter"></select>
+        </label>
+        <label class="filter-field">
+          <span>Companhia</span>
+          <select id="company-filter"></select>
+        </label>
+        <label class="filter-field">
+          <span>Município</span>
+          <select id="municipality-filter"></select>
+        </label>
+        <label class="filter-field">
+          <span>Tipo de unidade</span>
+          <select id="unit-type-filter">
+            <option value="all">Todos</option>
+            <option value="sede">Sede</option>
+            <option value="companhia">Companhia</option>
+            <option value="pelotao">Pelotão</option>
+            <option value="sem_vinculo">Sem vínculo informado</option>
+            <option value="nao_territorial">Não territorial</option>
+          </select>
+        </label>
+        <label class="filter-field">
+          <span>Faixa de efetivo</span>
+          <select id="effective-range-filter">
+            <option value="all">Todas</option>
+            <option value="0-24">0 a 24 policiais</option>
+            <option value="25-49">25 a 49 policiais</option>
+            <option value="50-99">50 a 99 policiais</option>
+            <option value="100+">100 policiais ou mais</option>
+          </select>
+        </label>
+      </div>
+      <div id="filters-note" class="filters-note"></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="section-heading__eyebrow">Comando</p>
+          <h2>Cards por batalhão</h2>
+        </div>
+      </div>
+      <div id="battalion-card-groups" class="battalion-card-groups">
+        <div class="empty-state">Carregando batalhões...</div>
+      </div>
+    </section>
+
+    <section class="maps-grid">
+      <article class="panel map-panel" data-scenario-panel="atual">
+        <div class="map-panel__header">
+          <div>
+            <p class="section-heading__eyebrow">Mapa comparativo</p>
+            <h2>Estrutura atual</h2>
+          </div>
+          <div id="map-summary-atual" class="map-panel__summary"></div>
+        </div>
+        <div class="map-panel__body">
+          <div id="map-atual" class="map-canvas" aria-label="Mapa da estrutura atual"></div>
+          <aside class="map-aside">
+            <div class="map-aside__block">
+              <h3>Legenda operacional</h3>
+              <div id="legend-atual" class="legend"></div>
+            </div>
+          </aside>
+        </div>
+      </article>
+
+      <article class="panel map-panel" data-scenario-panel="proposta">
+        <div class="map-panel__header">
+          <div>
+            <p class="section-heading__eyebrow">Mapa comparativo</p>
+            <h2>Estrutura proposta</h2>
+          </div>
+          <div id="map-summary-proposta" class="map-panel__summary"></div>
+        </div>
+        <div class="map-panel__body">
+          <div id="map-proposta" class="map-canvas" aria-label="Mapa da estrutura proposta"></div>
+          <aside class="map-aside">
+            <div class="map-aside__block">
+              <h3>Legenda operacional</h3>
+              <div id="legend-proposta" class="legend"></div>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="section-heading__eyebrow">Detalhamento</p>
+          <h2>Território, hierarquia e efetivo</h2>
+        </div>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-panel">
+          <div class="detail-panel__header">
+            <h3>Efetivo por batalhão</h3>
+            <p>Comparativo dinâmico conforme o recorte selecionado.</p>
+          </div>
+          <div id="comparison-bars" class="comparison-bars"></div>
+        </div>
+        <div class="detail-panel">
+          <div class="detail-panel__header">
+            <h3>Hierarquia operacional</h3>
+            <p>Batalhões, companhias e pelotões com navegação territorial.</p>
+          </div>
+          <div id="hierarchy-panel" class="hierarchy-panel"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite" role="status"></div>
+
+  <script src="vendor/leaflet/dist/leaflet.js"></script>
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>

@@ -16,6 +16,23 @@ Depois acesse:
 http://127.0.0.1:8000
 ```
 
+## Visualização web
+
+Após publicar no GitHub Pages, o endereço esperado é:
+
+```text
+https://abraaorosal.github.io/proposta9BPRAIO/
+```
+
+Se o link ainda retornar `404`, ative o GitHub Pages no repositório:
+
+- `Settings`
+- `Pages`
+- `Build and deployment`
+- `Source: Deploy from a branch`
+- `Branch: main`
+- `Folder: /(root)`
+
 ## Estrutura principal
 
 - `index.html`: página única do dashboard.

@@ -1,0 +1,222 @@
+{
+    "titulo": "Organograma Operacional – CPRAIO",
+    "subtitulo": "Estrutura Consolidada – 86 Bases Operacionais",
+    "batalhoes": [
+      {
+        "nome": "1º BPRAIO",
+        "sede": "Fortaleza",
+        "bases_informadas": 2,
+        "companhias": [
+          {
+            "nome": "Fortaleza",
+            "cia": "1ª Cia",
+            "pelotoes": [
+              "Messejana"
+            ]
+          },
+          {
+            "nome": "Motopoliciamento Ordinário",
+            "cia": "2ª Cia",
+            "pelotoes": []
+          }
+        ]
+      },
+      {
+        "nome": "2º BPRAIO",
+        "sede": "Caucaia",
+        "bases_informadas": 16,
+        "companhias": [
+          {
+            "nome": "Caucaia",
+            "cia": "1ª Cia",
+            "pelotoes": [
+              "São Gonçalo do Amarante",
+              "Trairí",
+              "Paracuru",
+              "Paraipaba"
+            ]
+          },
+          {
+            "nome": "Maracanaú",
+            "cia": "2ª Cia",
+            "pelotoes": [
+              "Maranguape",
+              "Pacatuba",
+              "Guaiúba"
+            ]
+          },
+          {
+            "nome": "Eusébio",
+            "cia": "3ª Cia",
+            "pelotoes": [
+              "Aquiraz",
+              "Cascavel"
+            ]
+          },
+          {
+            "nome": "Horizonte",
+            "cia": "4ª Cia",
+            "pelotoes": [
+              "Pacajus",
+              "Itaitinga",
+              "Chorozinho"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "3º BPRAIO",
+        "sede": "Russas",
+        "bases_informadas": 17,
+        "companhias": [
+          {
+            "nome": "Russas",
+            "cia": "1ª Cia",
+            "pelotoes": [
+              "Limoeiro do Norte",
+              "Morada Nova",
+              "Jaguaribe",
+              "Tabuleiro do Norte"
+            ]
+          },
+          {
+            "nome": "Aracati",
+            "cia": "2ª Cia",
+            "pelotoes": [
+              "Beberibe",
+              "Jaguaruana",
+              "Icapuí"
+            ]
+          },
+          {
+            "nome": "Quixadá",
+            "cia": "3ª Cia",
+            "pelotoes": [
+              "Quixeramobim",
+              "Baturité",
+              "Boa Viagem",
+              "Pedra Branca",
+              "Ocara",
+              "Aracoiaba",
+              "Redenção"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "4º BPRAIO",
+        "sede": "Sobral",
+        "bases_informadas": 24,
+        "companhias": [
+          {
+            "nome": "Sobral",
+            "cia": "1ª Cia",
+            "pelotoes": [
+              "Massapê",
+              "Santana do Acaraú",
+              "Forquilha"
+            ]
+          },
+          {
+            "nome": "Tianguá",
+            "cia": "2ª Cia",
+            "pelotoes": [
+              "Viçosa do Ceará",
+              "São Benedito",
+              "Guaraciaba do Norte",
+              "Ipu",
+              "Ubajara",
+              "Ibiapina"
+            ]
+          },
+          {
+            "nome": "Canindé",
+            "cia": "3ª Cia",
+            "pelotoes": [
+              "Santa Quitéria"
+            ]
+          },
+          {
+            "nome": "Camocim",
+            "cia": "4ª Cia",
+            "pelotoes": [
+              "Granja",
+              "Bela Cruz",
+              "Marco",
+              "Cruz"
+            ]
+          },
+          {
+            "nome": "Itapipoca",
+            "cia": "5ª Cia",
+            "pelotoes": [
+              "Itapajé",
+              "Acaraú",
+              "Itarema",
+              "Amontada",
+              "Pentecoste"
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "5º BPRAIO",
+        "sede": "Juazeiro do Norte",
+        "bases_informadas": 27,
+        "companhias": [
+          {
+            "nome": "Juazeiro do Norte",
+            "cia": "1ª Cia",
+            "pelotoes": [
+              "Crato",
+              "Barbalha",
+              "Lavras da Mangabeira",
+              "Aurora",
+              "Missão Velha",
+              "Campos Sales",
+              "Caririaçu",
+              "Milagres"
+            ]
+          },
+          {
+            "nome": "Iguatu",
+            "cia": "2ª Cia",
+            "pelotoes": [
+              "Acopiara",
+              "Icó",
+              "Várzea Alegre",
+              "Cedro"
+            ]
+          },
+          {
+            "nome": "Tauá",
+            "cia": "3ª Cia",
+            "pelotoes": [
+              "Parambu",
+              "Mombaça",
+              "Senador Pompeu"
+            ]
+          },
+          {
+            "nome": "Crateús",
+            "cia": "4ª Cia",
+            "pelotoes": [
+              "Tamboril",
+              "Nova Russas",
+              "Novo Oriente",
+              "Ipueiras",
+              "Independência"
+            ]
+          },
+          {
+            "nome": "Brejo Santo",
+            "cia": "5ª Cia",
+            "pelotoes": [
+              "Mauriti",
+              "Jardim"
+            ]
+          }
+        ]
+      }
+    ]
+  }
