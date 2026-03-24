@@ -772,6 +772,13 @@ select {
   border-radius: 16px;
   border: 1px solid rgba(24, 37, 47, 0.08);
   background: rgba(244, 247, 240, 0.84);
+  overflow: hidden;
+}
+
+.company-card.is-new-company {
+  border-color: rgba(204, 157, 42, 0.3);
+  background: linear-gradient(180deg, rgba(255, 249, 236, 0.98), rgba(248, 244, 232, 0.9));
+  box-shadow: inset 4px 0 0 rgba(204, 157, 42, 0.95);
 }
 
 .company-card__head {
@@ -787,8 +794,28 @@ select {
   text-align: left;
 }
 
+.company-card__head-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.company-card__head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.company-card__head.is-new-company {
+  background: linear-gradient(180deg, rgba(204, 157, 42, 0.08), rgba(255, 255, 255, 0));
+}
+
 .company-card__head:hover {
   background: rgba(255, 255, 255, 0.48);
+}
+
+.company-card__head.is-new-company:hover {
+  background: linear-gradient(180deg, rgba(204, 157, 42, 0.16), rgba(255, 255, 255, 0.14));
 }
 
 .company-card__body {
@@ -823,6 +850,28 @@ select {
 .unit-button__meta {
   color: var(--muted);
   font-size: 0.84rem;
+}
+
+.unit-button__meta--highlight {
+  color: #7c5b09;
+  font-weight: 700;
+}
+
+.company-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.company-badge--new {
+  background: rgba(204, 157, 42, 0.16);
+  border: 1px solid rgba(204, 157, 42, 0.28);
+  color: #7c5b09;
 }
 
 .empty-state {

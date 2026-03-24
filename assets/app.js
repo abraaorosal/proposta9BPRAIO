@@ -117,6 +117,7 @@ function buildAppData({ atualStructure, propostaStructure, municipios, efetivo, 
     atual: buildScenarioData("atual", atualStructure, lookups),
     proposta: buildScenarioData("proposta", propostaStructure, lookups),
   };
+  annotateProposalCompanyHighlights(scenarios);
   const coverage = buildCoverageSummary(scenarios, lookups);
   const options = buildOptionLists(scenarios, lookups);
 
@@ -127,6 +128,16 @@ function buildAppData({ atualStructure, propostaStructure, municipios, efetivo, 
     coverage,
     options,
   };
+}
+
+function annotateProposalCompanyHighlights(scenarios) {
+  const currentCompanyKeys = new Set(scenarios.atual.companies.map((company) => company.nameKey));
+
+  Object.values(scenarios).forEach((scenario) => {
+    scenario.companies.forEach((company) => {
+      company.isNewInProposal = scenario.key === "proposta" && !currentCompanyKeys.has(company.nameKey);
+    });
+  });
 }
 
 function buildLookups({ municipios, efetivo, geojson }) {
@@ -991,6 +1002,12 @@ function renderHierarchy(metricsByScenario) {
                     company.name
                   )} não possui georreferenciamento territorial nos arquivos disponíveis."`
                 : `data-action="select-company" data-company="${company.nameKey}"`;
+              const companyCardClass = `company-card${company.isNewInProposal ? " is-new-company" : ""}`;
+              const companyHeadClass = `company-card__head${company.isNewInProposal ? " is-new-company" : ""}`;
+              const companyTypeLabel = company.territorial ? "Companhia territorial" : "Companhia não territorial";
+              const companyHighlightBadge = company.isNewInProposal
+                ? `<span class="company-badge company-badge--new">Nova companhia da proposta</span>`
+                : "";
 
               let seatButton = `
                 <button
@@ -1077,11 +1094,14 @@ function renderHierarchy(metricsByScenario) {
                 .join("");
 
               return `
-                <div class="company-card">
-                  <button type="button" class="company-card__head" ${companyNote}>
-                    <span>
+                <div class="${companyCardClass}">
+                  <button type="button" class="${companyHeadClass}" ${companyNote}>
+                    <span class="company-card__head-copy">
                       <strong>${escapeHtml(company.code)} · ${escapeHtml(company.name)}</strong>
-                      <span class="unit-button__meta">${company.territorial ? "Companhia territorial" : "Companhia não territorial"}</span>
+                      <span class="company-card__head-meta">
+                        <span class="unit-button__meta${company.isNewInProposal ? " unit-button__meta--highlight" : ""}">${companyTypeLabel}</span>
+                        ${companyHighlightBadge}
+                      </span>
                     </span>
                     <span class="unit-button__meta">${formatMetricValue(company.totalPolice)} policiais</span>
                   </button>
