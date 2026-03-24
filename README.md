@@ -63,6 +63,6 @@ Se o link ainda retornar `404`, ative o GitHub Pages no repositório:
 
 ## Observações sobre os dados atuais
 
-- `Messejana` aparece na estrutura, mas não possui geometria municipal nem efetivo próprio nos arquivos disponíveis.
+- `Messejana` e `Motopoliciamento Ordinário` entram no total do 1º BPRAIO com efetivo próprio, mas seguem sem geometria municipal própria para exibição no mapa.
 
 # proposta9BPRAIO

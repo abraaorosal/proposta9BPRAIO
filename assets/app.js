@@ -220,21 +220,25 @@ function buildScenarioData(scenarioKey, structure, lookups) {
         platoons: [],
       };
 
-      if (territorial) {
-        const companySeat = ensureOperationalRecord(recordRegistry, rawCompany.nome, {
-          scenarioKey,
-          battalionId,
-          battalionName: rawBattalion.nome,
-          battalionSeat: rawBattalion.sede,
-          companyId,
-          companyName: rawCompany.nome,
-          companyCode: rawCompany.cia,
-          role: "companhia",
-          lookups,
-        });
-        pushUnique(company.localityKeys, companySeat.key);
-        pushUnique(battalion.localityKeys, companySeat.key);
-      } else {
+      const companyRecord = ensureOperationalRecord(recordRegistry, rawCompany.nome, {
+        scenarioKey,
+        battalionId,
+        battalionName: rawBattalion.nome,
+        battalionSeat: rawBattalion.sede,
+        companyId,
+        companyName: rawCompany.nome,
+        companyCode: rawCompany.cia,
+        role: "companhia",
+        isNonTerritorial: !territorial,
+        lookups,
+      });
+
+      if (companyRecord) {
+        pushUnique(company.localityKeys, companyRecord.key);
+        pushUnique(battalion.localityKeys, companyRecord.key);
+      }
+
+      if (!territorial) {
         specialUnits.push({
           scenarioKey,
           type: "nao_territorial",
@@ -364,6 +368,7 @@ function ensureOperationalRecord(registry, name, context) {
       platoonId: context.platoonId || null,
       platoonName: context.platoonName || null,
       roles: new Set(),
+      isNonTerritorial: Boolean(context.isNonTerritorial),
       policeCount: effectiveByKey.has(key) ? effectiveByKey.get(key) : null,
       coordinate: municipalityByKey.get(key) || null,
       hasCoordinate: municipalityByKey.has(key),
@@ -382,6 +387,7 @@ function ensureOperationalRecord(registry, name, context) {
   record.companyCode = record.companyCode || context.companyCode || null;
   record.platoonId = record.platoonId || context.platoonId || null;
   record.platoonName = record.platoonName || context.platoonName || null;
+  record.isNonTerritorial = record.isNonTerritorial || Boolean(context.isNonTerritorial);
   record.roles.add(context.role);
 
   return record;
@@ -986,8 +992,23 @@ function renderHierarchy(metricsByScenario) {
                   )} não possui georreferenciamento territorial nos arquivos disponíveis."`
                 : `data-action="select-company" data-company="${company.nameKey}"`;
 
-              const seatButton = company.territorial && seatRecord
-                ? `
+              let seatButton = `
+                <button
+                  type="button"
+                  class="unit-button is-disabled"
+                  data-action="show-note"
+                  data-note="A companhia ${escapeAttribute(company.name)} não possui referência territorial própria nos arquivos."
+                >
+                  <span>
+                    <strong>Unidade não territorial</strong>
+                    <span class="unit-button__meta">${escapeHtml(company.name)}</span>
+                  </span>
+                  <span class="unit-button__meta">${formatMetricValue(company.totalPolice)}</span>
+                </button>
+              `;
+
+              if (company.territorial && seatRecord?.isMappable) {
+                seatButton = `
                   <button
                     type="button"
                     class="unit-button"
@@ -1000,21 +1021,23 @@ function renderHierarchy(metricsByScenario) {
                     </span>
                     <span class="unit-button__meta">${formatMetricValue(seatRecord.policeCount)}</span>
                   </button>
-                `
-                : `
+                `;
+              } else if (company.territorial && seatRecord) {
+                seatButton = `
                   <button
                     type="button"
                     class="unit-button is-disabled"
                     data-action="show-note"
-                    data-note="A companhia ${escapeAttribute(company.name)} não possui referência territorial própria nos arquivos."
+                    data-note="A unidade ${escapeAttribute(company.name)} consta na estrutura, mas não possui geometria municipal própria."
                   >
                     <span>
-                      <strong>Unidade não territorial</strong>
-                      <span class="unit-button__meta">${escapeHtml(company.name)}</span>
+                      <strong>Sede da companhia</strong>
+                      <span class="unit-button__meta">${escapeHtml(seatRecord.name)}</span>
                     </span>
-                    <span class="unit-button__meta">Sem mapa</span>
+                    <span class="unit-button__meta">${formatMetricValue(seatRecord.policeCount)}</span>
                   </button>
                 `;
+              }
 
               const platoonButtons = visiblePlatoons
                 .map((platoon) => {
@@ -1031,7 +1054,7 @@ function renderHierarchy(metricsByScenario) {
                           <strong>Pelotão</strong>
                           <span class="unit-button__meta">${escapeHtml(platoon.name)}</span>
                         </span>
-                        <span class="unit-button__meta">Sem mapa</span>
+                        <span class="unit-button__meta">${formatMetricValue(record?.policeCount ?? null)}</span>
                       </button>
                     `;
                   }
@@ -1119,7 +1142,7 @@ function renderFilterNotes() {
 
   if (coverage.missingLocalities.length) {
     notes.push({
-      label: `${coverage.missingLocalities.join(", ")} consta na estrutura, mas não possui geometria municipal nem efetivo próprios no conjunto de dados.`,
+      label: `${coverage.missingLocalities.join(", ")} consta na estrutura, mas não possui base cartográfica municipal própria nos arquivos enviados.`,
       className: " note-pill--warn",
     });
   }
@@ -1237,13 +1260,17 @@ function companyMatches(company, scenarioKey) {
   }
 
   if (!company.territorial) {
+    const record = company.records[0] || null;
     if (filters.municipality !== "all") {
       return false;
     }
-    if (filters.effectiveRange !== "all") {
+    if (!matchesEffectiveRange(record?.policeCount ?? company.totalPolice, filters.effectiveRange)) {
       return false;
     }
-    return filters.unitType === "all" || filters.unitType === "nao_territorial";
+    if (filters.unitType === "sem_vinculo" || filters.unitType === "sede" || filters.unitType === "pelotao") {
+      return false;
+    }
+    return filters.unitType === "all" || filters.unitType === "nao_territorial" || filters.unitType === "companhia";
   }
 
   const seatRecord = company.seatKey ? scenario.recordByKey.get(company.seatKey) : null;
@@ -1314,8 +1341,11 @@ function recordMatches(record, scenarioKey) {
   if (filters.unitType === "all") {
     return true;
   }
-  if (filters.unitType === "nao_territorial" || filters.unitType === "sem_vinculo") {
+  if (filters.unitType === "sem_vinculo") {
     return false;
+  }
+  if (filters.unitType === "nao_territorial") {
+    return Boolean(record.isNonTerritorial && record.roles.includes("companhia"));
   }
   return record.roles.includes(filters.unitType);
 }
